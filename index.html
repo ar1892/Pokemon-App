@@ -10,15 +10,14 @@
 <body>
   <header>
     <h1>Pokémon Explorer</h1>
-    <input id="input-name" type="text" placeholder="Search Pokémon by name..." />
+    <input id="input-name" type="text" placeholder="Search Pokémon by name..." oninput="filterPokemon()" />
     <div class="btns">
-      <button onclick="fetchPokemon()">Search</button>
-      <button onclick="getRandomPokemon()">Random</button>
+      <button onclick="getRandomPokemon()">🎲 Random</button>
     </div>
   </header>
 
   <main>
-    <div id="output" class="card-area"></div>
+    <div id="output" class="card-grid"></div>
     <p id="error" class="error"></p>
   </main>
 

@@ -5,11 +5,12 @@
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
-  background-color: #f5f7fa;
+  background: linear-gradient(to right, #e0f7fa, #fce4ec);
+  color: #333;
 }
 
 header {
-  background-color: #ef5350;
+  background-color: #7e57c2;
   padding: 30px 20px;
   text-align: center;
   color: white;
@@ -39,7 +40,7 @@ button {
   font-size: 16px;
   border: none;
   background-color: white;
-  color: #ef5350;
+  color: #7e57c2;
   font-weight: bold;
   border-radius: 6px;
   cursor: pointer;
@@ -47,7 +48,7 @@ button {
 }
 
 button:hover {
-  background-color: #fdd;
+  background-color: #ede7f6;
 }
 
 main {
@@ -57,28 +58,34 @@ main {
   padding: 30px 20px;
 }
 
-.card-area {
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.card {
   background-color: white;
   border-radius: 12px;
-  padding: 20px;
-  max-width: 400px;
-  width: 100%;
+  padding: 15px;
   text-align: center;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
 }
 
-.card-area img {
-  width: 120px;
-  height: 120px;
-  margin-bottom: 10px;
+.card:hover {
+  transform: scale(1.05);
 }
 
-.card-area h2 {
-  margin-top: 0;
+.card img {
+  width: 100px;
+  height: 100px;
 }
 
-.stats p {
-  margin: 6px 0;
+.card h3 {
+  margin: 10px 0 0;
 }
 
 .error {

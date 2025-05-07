@@ -1,62 +1,46 @@
 const output = document.getElementById("output");
-const errorDisplay = document.getElementById("error");
+const error = document.getElementById("error");
+let allPokemon = [];
 
-function renderPokemon(pokemon) {
-  output.innerHTML = "";
-  errorDisplay.textContent = "";
-
-  const card = document.createElement("div");
-  card.className = "card-area";
-
-  const img = document.createElement("img");
-  img.src = pokemon.sprites.front_default;
-  img.alt = pokemon.name;
-
-  const title = document.createElement("h2");
-  title.textContent = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
-
-  const stats = document.createElement("div");
-  stats.className = "stats";
-
-  pokemon.stats.forEach(stat => {
-    const p = document.createElement("p");
-    p.textContent = `${stat.stat.name.toUpperCase()}: ${stat.base_stat}`;
-    stats.appendChild(p);
-  });
-
-  card.appendChild(img);
-  card.appendChild(title);
-  card.appendChild(stats);
-  output.appendChild(card);
+async function fetchAllPokemon() {
+  try {
+    const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+    const data = await response.json();
+    allPokemon = data.results;
+    await displayPokemon(allPokemon);
+  } catch (err) {
+    error.textContent = "Failed to load Pokémon.";
+  }
 }
 
-function fetchPokemon() {
-  const name = document.getElementById("input-name").value.trim().toLowerCase();
-  if (!name) {
-    errorDisplay.textContent = "Please enter a Pokémon name.";
-    output.innerHTML = "";
-    return;
+async function displayPokemon(pokemonList) {
+  output.innerHTML = "";
+  for (const poke of pokemonList) {
+    const res = await fetch(poke.url);
+    const data = await res.json();
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="${data.sprites.front_default}" alt="${data.name}" />
+      <h3>${capitalize(data.name)}</h3>
+    `;
+    output.appendChild(card);
   }
+}
 
-  fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-    .then(response => {
-      if (!response.ok) throw new Error("Pokémon not found");
-      return response.json();
-    })
-    .then(data => renderPokemon(data))
-    .catch(err => {
-      errorDisplay.textContent = err.message;
-      output.innerHTML = "";
-    });
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function filterPokemon() {
+  const input = document.getElementById("input-name").value.toLowerCase();
+  const filtered = allPokemon.filter(p => p.name.includes(input));
+  displayPokemon(filtered);
 }
 
 function getRandomPokemon() {
-  const id = Math.floor(Math.random() * 898) + 1;
-  fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-    .then(response => response.json())
-    .then(data => renderPokemon(data))
-    .catch(err => {
-      errorDisplay.textContent = "Failed to load random Pokémon.";
-      output.innerHTML = "";
-    });
+  const rand = allPokemon[Math.floor(Math.random() * allPokemon.length)];
+  displayPokemon([rand]);
 }
+
+fetchAllPokemon();
