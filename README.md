@@ -1,55 +1,44 @@
-# Pokémon Explorer 🧬
+# Pokémon Explorer 🧭
 
-This is a simple front-end application that allows users to explore Pokémon information using the [PokéAPI](https://pokeapi.co/). It fetches data like the Pokémon's name, image, abilities, and types.
+Explore the world of Pokémon with this interactive front-end application!  
+Easily search, filter, and browse the first generation of Pokémon (1–151) using live data from the PokéAPI.
 
-## 🔗 Live Site
+## 🌐 Features
 
-👉 [https://your-username.github.io/pokemon-app](https://your-username.github.io/pokemon-app)  
-(Replace with your actual link once GitHub Pages is enabled)
+- 🔎 **Live Search** by Pokémon name (partial match supported)
+- 🧪 **Filter by Type** (e.g. Fire, Water, Grass...)
+- 🎲 **Random Pokémon Generator**
+- 🎨 **Type Color-Coded Cards** for enhanced visual experience
+- ⚡ Responsive layout, optimized for desktop and mobile
+- 🌍 Data pulled in real-time from the [PokéAPI](https://pokeapi.co)
 
----
+## 🛠️ Technologies Used
 
-## 🚀 Features
+- HTML5
+- CSS3 (custom styling + type-based theming)
+- JavaScript (DOM manipulation, Fetch API)
+- [PokéAPI](https://pokeapi.co) for Pokémon data
 
-- Search for a Pokémon by name
-- See its image, type(s), and abilities
-- Fully responsive UI
-- Animated image hover
+## 🔐 Security & API Usage
 
----
+- ✅ **No API key required** (PokéAPI is public)
+- ❌ **No secrets or credentials** are exposed
+- 📄 Fully compliant with course security requirements
 
-## 🧠 How It Works
+## 🧪 How It Works
 
-- Built with HTML, CSS, and JavaScript
-- Uses [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to call data from the [PokéAPI](https://pokeapi.co/api/v2/)
-- No server required — runs fully on the client side
-
----
-
-## 🔐 API Key Setup
-
-✅ No API key required — the PokéAPI is public and free to use.
-
----
+- On page load, the app automatically fetches data for Pokémon 1–151
+- Cards are generated dynamically and styled based on each Pokémon's primary type
+- Users can filter or search through this collection, or generate a random pick
 
 ## 📦 Setup Instructions
 
-To run locally:
+1. Clone or download the repository
+2. Open `index.html` in a browser, or deploy to GitHub Pages
+3. Enjoy exploring Pokémon!
 
-1. Clone this repo using GitHub Desktop or `git clone` in terminal  
-2. Open the folder in Visual Studio Code  
-3. Open `index.html` in your browser  
-4. Done!
+## 👨‍🏫 Attribution
 
----
-
-## 👩‍💻 Developer
-
-This project was built by Andres Raygada.  
-(Feel free to personalize this section with your name, email, or portfolio!)
-
----
-
-## 📜 License
-
-MIT — Free to use, modify, and distribute.
+- Powered by [PokéAPI](https://pokeapi.co)
+- Developed as a course project for Internet Technologies
+- Designed and built by [Andres Raygada] (working solo)

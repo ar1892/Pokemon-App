@@ -10,9 +10,13 @@
 <body>
   <header>
     <h1>Pokémon Explorer</h1>
-    <input id="input-name" type="text" placeholder="Search Pokémon by name..." oninput="filterPokemon()" />
-    <div class="btns">
-      <button onclick="getRandomPokemon()">🎲 Random</button>
+    <div class="controls">
+      <input id="input-name" type="text" placeholder="Search Pokémon by name..." />
+      <select id="type-filter">
+        <option value="all">All Types</option>
+      </select>
+      <button onclick="fetchPokemon()">Search</button>
+      <button onclick="getRandomPokemon()">Random</button>
     </div>
   </header>
 
