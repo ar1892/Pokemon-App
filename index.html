@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokémon Explorer</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pokédex Search App</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Pokémon Explorer</h1>
-        <input type="text" id="search" placeholder="Search Pokémon by name...">
-    </header>
-    <main>
-        <section id="pokemon-list" class="grid"></section>
-        <section id="pokemon-details" class="hidden">
-            <button id="close-details">Close</button>
-            <div id="details-content"></div>
-        </section>
-    </main>
-    <script src="script.js"></script>
+  <div class="container">
+    <h1>Pokédex</h1>
+    <input id="input-name" type="text" placeholder="Enter Pokémon name (e.g. pikachu)">
+    <div class="btns">
+      <button onclick="fetchPokemon()">Search</button>
+      <button onclick="getRandomPokemon()">Random</button>
+    </div>
+    <div id="output" class="pokemon-card"></div>
+    <div id="error" class="error"></div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
