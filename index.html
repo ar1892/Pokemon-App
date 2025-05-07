@@ -3,21 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Advanced Pokédex</title>
+  <title>Pokémon Explorer</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <h1>Pokédex</h1>
-    <input id="input-name" type="text" placeholder="Enter Pokémon name or ID">
+  <header>
+    <h1>Pokémon Explorer</h1>
+    <input id="input-name" type="text" placeholder="Search Pokémon by name..." />
     <div class="btns">
       <button onclick="fetchPokemon()">Search</button>
       <button onclick="getRandomPokemon()">Random</button>
     </div>
-    <div id="output" class="pokemon-card"></div>
-    <div id="error" class="error"></div>
-  </div>
+  </header>
+
+  <main>
+    <div id="output" class="card-area"></div>
+    <p id="error" class="error"></p>
+  </main>
+
   <script src="script.js"></script>
 </body>
 </html>

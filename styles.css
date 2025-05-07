@@ -1,70 +1,88 @@
-body {
-    margin: 0;
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f8f8f8;
-    color: #333;
-    padding: 20px;
+    margin: 0;
+    background-color: #f5f7fa;
+  }
+  
+  header {
+    background-color: #ef5350;
+    padding: 30px 20px;
+    text-align: center;
+    color: white;
   }
   
   h1 {
-    text-align: center;
-    color: #ee1515;
-  }
-  
-  .container {
-    max-width: 500px;
-    margin: auto;
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-  }
-  
-  input, button {
-    padding: 10px;
-    width: calc(100% - 22px);
-    font-size: 16px;
     margin-bottom: 10px;
+    font-size: 2.5em;
+  }
+  
+  input {
+    padding: 10px;
+    width: 300px;
+    max-width: 90%;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
   }
   
   .btns {
-    display: flex;
-    gap: 10px;
+    margin-top: 10px;
   }
   
   button {
-    flex: 1;
-    background-color: #ee1515;
+    padding: 10px 16px;
+    margin: 5px;
+    font-size: 16px;
     border: none;
-    color: white;
-    cursor: pointer;
+    background-color: white;
+    color: #ef5350;
+    font-weight: bold;
     border-radius: 6px;
-    transition: background 0.3s;
+    cursor: pointer;
+    transition: all 0.3s;
   }
   
   button:hover {
-    background-color: #cc0000;
+    background-color: #fdd;
   }
   
-  .pokemon-card {
-    margin-top: 20px;
-    text-align: center;
-    padding: 20px;
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+  }
+  
+  .card-area {
+    background-color: white;
     border-radius: 12px;
-    transition: background-color 0.3s;
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   }
   
-  .pokemon-card img {
-    width: 150px;
-    height: 150px;
+  .card-area img {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 10px;
   }
   
-  .stats {
-    margin-top: 10px;
+  .card-area h2 {
+    margin-top: 0;
+  }
+  
+  .stats p {
+    margin: 6px 0;
   }
   
   .error {
     color: red;
-    text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
+    font-weight: bold;
   }

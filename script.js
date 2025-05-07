@@ -21,14 +21,9 @@ const typeColors = {
   
   async function fetchPokemonData(name) {
     const url = `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`;
-    try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error("Not found");
-      const data = await res.json();
-      return data;
-    } catch (err) {
-      throw err;
-    }
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("Not found");
+    return await res.json();
   }
   
   function displayPokemon(pokemon) {
@@ -37,27 +32,30 @@ const typeColors = {
     errorBox.textContent = "";
   
     const primaryType = pokemon.types[0].type.name;
-    const bgColor = typeColors[primaryType] || '#f8f8f8';
+    const bgColor = typeColors[primaryType] || '#fff';
   
     output.style.backgroundColor = bgColor;
   
     output.innerHTML = `
-      <h2>${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
-      <img src="${pokemon.sprites.front_default}" alt="Image of ${pokemon.name}">
+      <h2>${capitalize(pokemon.name)}</h2>
+      <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
       <div class="stats">
+        <p><strong>Type:</strong> ${pokemon.types.map(t => t.type.name).join(", ")}</p>
         <p><strong>HP:</strong> ${pokemon.stats[0].base_stat}</p>
         <p><strong>Attack:</strong> ${pokemon.stats[1].base_stat}</p>
         <p><strong>Defense:</strong> ${pokemon.stats[2].base_stat}</p>
-        <p><strong>Type:</strong> ${pokemon.types.map(t => t.type.name).join(", ")}</p>
       </div>
     `;
   }
   
   function showError(message) {
     document.getElementById("error").textContent = message;
-    const output = document.getElementById("output");
-    output.innerHTML = "";
-    output.style.backgroundColor = 'white';
+    document.getElementById("output").innerHTML = "";
+    document.getElementById("output").style.backgroundColor = 'white';
+  }
+  
+  function capitalize(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
   }
   
   async function fetchPokemon() {
@@ -70,7 +68,7 @@ const typeColors = {
       const data = await fetchPokemonData(name);
       displayPokemon(data);
     } catch (err) {
-      showError("Pokémon not found. Try another name or ID.");
+      showError("Pokémon not found.");
     }
   }
   
@@ -80,6 +78,6 @@ const typeColors = {
       const data = await fetchPokemonData(id);
       displayPokemon(data);
     } catch (err) {
-      showError("Could not load random Pokémon.");
+      showError("Error fetching random Pokémon.");
     }
   }
