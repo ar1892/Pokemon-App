@@ -1,87 +1,97 @@
 const output = document.getElementById("output");
-const error = document.getElementById("error");
-const input = document.getElementById("input-name");
+const searchInput = document.getElementById("input-name");
 const typeFilter = document.getElementById("type-filter");
+const error = document.getElementById("error");
 
 let allPokemon = [];
 
 async function fetchAllPokemon() {
-  for (let i = 1; i <= 151; i++) {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+  try {
+    const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
     const data = await res.json();
-    allPokemon.push({
-      name: data.name,
-      id: data.id,
-      img: data.sprites.front_default,
-      types: data.types.map(t => t.type.name)
-    });
+    const results = data.results;
+
+    const detailedData = await Promise.all(results.map(p => fetch(p.url).then(res => res.json())));
+    allPokemon = detailedData;
+    renderPokemon(allPokemon);
+    populateTypeFilter();
+  } catch (err) {
+    console.error("Failed to fetch Pokémon:", err);
+    error.textContent = "Error loading Pokémon data.";
   }
-  populateTypeFilter();
-  renderCards(allPokemon);
 }
 
-function populateTypeFilter() {
-  const types = new Set();
-  allPokemon.forEach(p => p.types.forEach(t => types.add(t)));
-  types.forEach(type => {
-    const option = document.createElement("option");
-    option.value = type;
-    option.textContent = type[0].toUpperCase() + type.slice(1);
-    typeFilter.appendChild(option);
-  });
-}
-
-function renderCards(pokemonList) {
-  output.innerHTML = "";
+function renderPokemon(pokemonList) {
   error.textContent = "";
-
+  output.innerHTML = "";
   if (pokemonList.length === 0) {
     error.textContent = "No Pokémon found.";
     return;
   }
 
-  pokemonList.forEach(pokemon => {
+  pokemonList.forEach(poke => {
     const card = document.createElement("div");
-    card.className = "card";
+    const primaryType = poke.types[0].type.name;
+    card.className = `card ${primaryType}`;
 
     const img = document.createElement("img");
-    img.src = pokemon.img;
+    img.src = poke.sprites.front_default;
 
     const name = document.createElement("h2");
-    name.textContent = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
+    name.textContent = poke.name;
 
-    const typeSpan = document.createElement("span");
-    typeSpan.className = `type type-${pokemon.types[0]}`;
-    typeSpan.textContent = pokemon.types[0];
+    const typeDiv = document.createElement("div");
+    typeDiv.className = "types";
+    poke.types.forEach(t => {
+      const span = document.createElement("span");
+      span.className = `type ${t.type.name}`;
+      span.textContent = t.type.name;
+      typeDiv.appendChild(span);
+    });
+
+    const statsDiv = document.createElement("div");
+    statsDiv.className = "stats";
+    poke.stats.forEach(s => {
+      const p = document.createElement("p");
+      p.textContent = `${s.stat.name}: ${s.base_stat}`;
+      statsDiv.appendChild(p);
+    });
 
     card.appendChild(img);
     card.appendChild(name);
-    card.appendChild(typeSpan);
+    card.appendChild(typeDiv);
+    card.appendChild(statsDiv);
     output.appendChild(card);
   });
 }
 
-function fetchPokemon() {
-  const name = input.value.toLowerCase().trim();
+function filterPokemon() {
+  const searchTerm = searchInput.value.toLowerCase();
   const selectedType = typeFilter.value;
-
-  let filtered = allPokemon;
-
-  if (name) {
-    filtered = filtered.filter(p => p.name.includes(name));
-  }
-
-  if (selectedType !== "all") {
-    filtered = filtered.filter(p => p.types.includes(selectedType));
-  }
-
-  renderCards(filtered);
+  const filtered = allPokemon.filter(poke => {
+    const matchesName = poke.name.includes(searchTerm);
+    const matchesType = selectedType === "all" || poke.types.some(t => t.type.name === selectedType);
+    return matchesName && matchesType;
+  });
+  renderPokemon(filtered);
 }
 
 function getRandomPokemon() {
   const random = allPokemon[Math.floor(Math.random() * allPokemon.length)];
-  renderCards([random]);
+  renderPokemon([random]);
 }
 
-// Initial load
-fetchAllPokemon();
+function populateTypeFilter() {
+  const types = new Set();
+  allPokemon.forEach(poke => {
+    poke.types.forEach(t => types.add(t.type.name));
+  });
+  [...types].sort().forEach(type => {
+    const option = document.createElement("option");
+    option.value = type;
+    option.textContent = type;
+    typeFilter.appendChild(option);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", fetchAllPokemon);

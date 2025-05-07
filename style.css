@@ -16,21 +16,17 @@ h1 {
   margin-bottom: 15px;
   font-size: 2.5em;
 }
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 10px;
-}
 input, select {
   padding: 10px;
+  width: 240px;
   font-size: 16px;
   border-radius: 6px;
   border: none;
+  margin: 5px;
 }
 button {
   padding: 10px 16px;
+  margin: 5px;
   font-size: 16px;
   border: none;
   background-color: white;
@@ -44,59 +40,78 @@ button:hover {
   background-color: #fdd;
 }
 main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
   padding: 30px 20px;
 }
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-}
 .card {
-  border-radius: 10px;
-  padding: 15px;
-  background-color: #fff;
-  color: #333;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 20px;
   text-align: center;
+  transition: transform 0.2s;
+  color: white;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  width: 200px;
 }
 .card img {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  padding: 10px;
 }
 .card h2 {
-  margin-top: 0;
-}
-.card .type {
-  font-weight: bold;
-  padding: 5px 10px;
-  border-radius: 20px;
-  display: inline-block;
   margin-top: 10px;
+  text-transform: capitalize;
+}
+.types {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.type {
+  background-color: rgba(255,255,255,0.3);
+  border-radius: 12px;
+  padding: 5px 10px;
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 0.85em;
   color: white;
 }
+.stats {
+  font-size: 0.85em;
+  text-align: left;
+  margin-top: 10px;
+}
+
+/* Type-Based Background Colors */
+.card.fire { background-color: #FD7D24; }
+.card.water { background-color: #4592C4; }
+.card.grass { background-color: #9BCC50; color: #203c13; }
+.card.electric { background-color: #EED535; color: #222; }
+.card.ice { background-color: #51C4E7; color: #103a49; }
+.card.psychic { background-color: #F366B9; }
+.card.rock { background-color: #A38C21; }
+.card.ground { background-color: #E0C068; color: #2f2f2f; }
+.card.poison { background-color: #B97FC9; }
+.card.bug { background-color: #729F3F; }
+.card.flying { background-color: #A890F0; color: #2f2f2f; }
+.card.fighting { background-color: #D56723; }
+.card.ghost { background-color: #7B62A3; }
+.card.steel { background-color: #9EB7B8; color: #1e3a3f; }
+.card.dark { background-color: #707070; }
+.card.dragon { background-color: #53A4CF; }
+.card.normal { background-color: #A4ACAF; color: #1e1e1e; }
+.card.fairy { background-color: #FDB9E9; color: #2c2c2c; }
+
 .error {
   color: red;
   margin-top: 20px;
   font-weight: bold;
   text-align: center;
+  width: 100%;
 }
-
-/* Type color classes */
-.type-fire { background-color: #F08030; }
-.type-water { background-color: #6890F0; }
-.type-grass { background-color: #78C850; }
-.type-electric { background-color: #F8D030; }
-.type-psychic { background-color: #F85888; }
-.type-ice { background-color: #98D8D8; }
-.type-dragon { background-color: #7038F8; }
-.type-dark { background-color: #705848; }
-.type-fairy { background-color: #EE99AC; }
-.type-normal { background-color: #A8A878; }
-.type-fighting { background-color: #C03028; }
-.type-flying { background-color: #A890F0; }
-.type-poison { background-color: #A040A0; }
-.type-ground { background-color: #E0C068; }
-.type-rock { background-color: #B8A038; }
-.type-bug { background-color: #A8B820; }
-.type-ghost { background-color: #705898; }
-.type-steel { background-color: #B8B8D0; }
