@@ -1,6 +1,5 @@
 const output = document.getElementById("output");
 const searchInput = document.getElementById("input-name");
-const typeFilter = document.getElementById("type-filter");
 const error = document.getElementById("error");
 
 let allPokemon = [];
@@ -11,10 +10,11 @@ async function fetchAllPokemon() {
     const data = await res.json();
     const results = data.results;
 
-    const detailedData = await Promise.all(results.map(p => fetch(p.url).then(res => res.json())));
+    const detailedData = await Promise.all(
+      results.map(p => fetch(p.url).then(res => res.json()))
+    );
     allPokemon = detailedData;
     renderPokemon(allPokemon);
-    populateTypeFilter();
   } catch (err) {
     console.error("Failed to fetch Pokémon:", err);
     error.textContent = "Error loading Pokémon data.";
@@ -67,12 +67,9 @@ function renderPokemon(pokemonList) {
 
 function filterPokemon() {
   const searchTerm = searchInput.value.toLowerCase();
-  const selectedType = typeFilter.value;
-  const filtered = allPokemon.filter(poke => {
-    const matchesName = poke.name.includes(searchTerm);
-    const matchesType = selectedType === "all" || poke.types.some(t => t.type.name === selectedType);
-    return matchesName && matchesType;
-  });
+  const filtered = allPokemon.filter(poke =>
+    poke.name.toLowerCase().includes(searchTerm)
+  );
   renderPokemon(filtered);
 }
 
@@ -81,17 +78,17 @@ function getRandomPokemon() {
   renderPokemon([random]);
 }
 
-function populateTypeFilter() {
-  const types = new Set();
-  allPokemon.forEach(poke => {
-    poke.types.forEach(t => types.add(t.type.name));
-  });
-  [...types].sort().forEach(type => {
-    const option = document.createElement("option");
-    option.value = type;
-    option.textContent = type;
-    typeFilter.appendChild(option);
-  });
+function resetPokemonList() {
+  searchInput.value = "";
+  renderPokemon(allPokemon);
 }
 
-document.addEventListener("DOMContentLoaded", fetchAllPokemon);
+document.addEventListener("DOMContentLoaded", () => {
+  fetchAllPokemon();
+  searchInput.addEventListener("input", filterPokemon);
+
+  const resetButton = document.createElement("button");
+  resetButton.textContent = "Reset";
+  resetButton.addEventListener("click", resetPokemonList);
+  document.querySelector("header").appendChild(resetButton);
+});

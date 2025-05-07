@@ -1,21 +1,30 @@
+/* Reset and base styles */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
 body {
   font-family: 'Roboto', sans-serif;
-  margin: 0;
   background-color: #f5f7fa;
+  color: #333;
 }
+
+/* Header with gradient background */
 header {
-  background-color: #ef5350;
+  background: linear-gradient(135deg, #ef5350, #f06292);
   padding: 30px 20px;
   text-align: center;
   color: white;
 }
+
 h1 {
   margin-bottom: 15px;
   font-size: 2.5em;
 }
+
+/* Search and filter inputs */
 input, select {
   padding: 10px;
   width: 240px;
@@ -24,6 +33,7 @@ input, select {
   border: none;
   margin: 5px;
 }
+
 button {
   padding: 10px 16px;
   margin: 5px;
@@ -36,16 +46,20 @@ button {
   cursor: pointer;
   transition: all 0.3s;
 }
+
 button:hover {
   background-color: #fdd;
 }
+
+/* Main content area with responsive grid */
 main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   padding: 30px 20px;
 }
+
+/* Pokémon card styling */
 .card {
   border-radius: 12px;
   padding: 20px;
@@ -53,8 +67,8 @@ main {
   transition: transform 0.2s;
   color: white;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  width: 200px;
 }
+
 .card img {
   width: 100px;
   height: 100px;
@@ -62,10 +76,12 @@ main {
   border-radius: 50%;
   padding: 10px;
 }
+
 .card h2 {
   margin-top: 10px;
   text-transform: capitalize;
 }
+
 .types {
   display: flex;
   justify-content: center;
@@ -73,6 +89,7 @@ main {
   margin-top: 5px;
   margin-bottom: 10px;
 }
+
 .type {
   background-color: rgba(255,255,255,0.3);
   border-radius: 12px;
@@ -82,6 +99,7 @@ main {
   font-size: 0.85em;
   color: white;
 }
+
 .stats {
   font-size: 0.85em;
   text-align: left;
@@ -108,6 +126,7 @@ main {
 .card.normal { background-color: #A4ACAF; color: #1e1e1e; }
 .card.fairy { background-color: #FDB9E9; color: #2c2c2c; }
 
+/* Error message styling */
 .error {
   color: red;
   margin-top: 20px;
