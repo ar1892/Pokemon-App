@@ -12,19 +12,18 @@
     <h1>Pokémon Explorer</h1>
     <div class="controls">
       <input id="input-name" type="text" placeholder="Search Pokémon by name..." />
-      <select id="type-filter">
+      <select id="type-select">
         <option value="all">All Types</option>
       </select>
       <button onclick="searchPokemon()">Search</button>
       <button onclick="getRandomPokemon()">Random</button>
+      <button onclick="resetPage()">Reset</button>
     </div>
   </header>
-
   <main>
-    <div id="output" class="card-grid"></div>
+    <div id="output" class="grid"></div>
     <p id="error" class="error"></p>
   </main>
-
   <script src="script.js"></script>
 </body>
 </html>

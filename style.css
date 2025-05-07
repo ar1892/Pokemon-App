@@ -1,136 +1,92 @@
-/* Reset and base styles */
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
-
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #f5f7fa;
-  color: #333;
+  margin: 0;
+  background-color: #f3f6fa;
+  color: #222;
 }
-
-/* Header with gradient background */
 header {
-  background: linear-gradient(135deg, #ef5350, #f06292);
+  background: linear-gradient(135deg, #ef5350, #ec407a);
+  color: white;
   padding: 30px 20px;
   text-align: center;
-  color: white;
 }
-
 h1 {
-  margin-bottom: 15px;
+  margin: 0 0 20px;
   font-size: 2.5em;
 }
-
-/* Search and filter inputs */
-input, select {
+.controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+input, select, button {
   padding: 10px;
-  width: 240px;
   font-size: 16px;
   border-radius: 6px;
   border: none;
-  margin: 5px;
 }
-
 button {
-  padding: 10px 16px;
-  margin: 5px;
-  font-size: 16px;
-  border: none;
   background-color: white;
   color: #ef5350;
   font-weight: bold;
-  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
-
 button:hover {
-  background-color: #fdd;
+  background-color: #ffcdd2;
 }
-
-/* Main content area with responsive grid */
-main {
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
-  padding: 30px 20px;
+  padding: 30px;
 }
-
-/* Pokémon card styling */
 .card {
-  border-radius: 12px;
   padding: 20px;
+  border-radius: 12px;
   text-align: center;
-  transition: transform 0.2s;
-  color: white;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  transition: transform 0.3s;
 }
-
-.card img {
+.card:hover {
+  transform: scale(1.03);
+}
+.card .sprite {
   width: 100px;
   height: 100px;
   background-color: rgba(255,255,255,0.2);
   border-radius: 50%;
-  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 10px;
 }
-
 .card h2 {
-  margin-top: 10px;
-  text-transform: capitalize;
+  margin: 10px 0;
 }
-
 .types {
   display: flex;
   justify-content: center;
-  gap: 8px;
-  margin-top: 5px;
+  gap: 10px;
   margin-bottom: 10px;
 }
-
 .type {
-  background-color: rgba(255,255,255,0.3);
-  border-radius: 12px;
-  padding: 5px 10px;
-  text-transform: capitalize;
+  background-color: rgba(255,255,255,0.2);
+  padding: 6px 12px;
+  border-radius: 20px;
   font-weight: bold;
-  font-size: 0.85em;
-  color: white;
 }
-
 .stats {
-  font-size: 0.85em;
   text-align: left;
   margin-top: 10px;
 }
-
-/* Type-Based Background Colors */
-.card.fire { background-color: #FD7D24; }
-.card.water { background-color: #4592C4; }
-.card.grass { background-color: #9BCC50; color: #203c13; }
-.card.electric { background-color: #EED535; color: #222; }
-.card.ice { background-color: #51C4E7; color: #103a49; }
-.card.psychic { background-color: #F366B9; }
-.card.rock { background-color: #A38C21; }
-.card.ground { background-color: #E0C068; color: #2f2f2f; }
-.card.poison { background-color: #B97FC9; }
-.card.bug { background-color: #729F3F; }
-.card.flying { background-color: #A890F0; color: #2f2f2f; }
-.card.fighting { background-color: #D56723; }
-.card.ghost { background-color: #7B62A3; }
-.card.steel { background-color: #9EB7B8; color: #1e3a3f; }
-.card.dark { background-color: #707070; }
-.card.dragon { background-color: #53A4CF; }
-.card.normal { background-color: #A4ACAF; color: #1e1e1e; }
-.card.fairy { background-color: #FDB9E9; color: #2c2c2c; }
-
-/* Error message styling */
 .error {
   color: red;
-  margin-top: 20px;
-  font-weight: bold;
   text-align: center;
-  width: 100%;
+  font-weight: bold;
 }
