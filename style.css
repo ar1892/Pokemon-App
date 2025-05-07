@@ -2,15 +2,14 @@
   box-sizing: border-box;
 }
 body {
-  font-family: 'Roboto', sans-serif;
   margin: 0;
-  background-color: #f3f6fa;
-  color: #222;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f6f8;
 }
 header {
-  background: linear-gradient(135deg, #ef5350, #ec407a);
-  color: white;
+  background: linear-gradient(90deg, #ef5350, #ec407a);
   padding: 30px 20px;
+  color: white;
   text-align: center;
 }
 h1 {
@@ -19,74 +18,102 @@ h1 {
 }
 .controls {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
 }
 input, select, button {
   padding: 10px;
-  font-size: 16px;
   border-radius: 6px;
   border: none;
+  font-size: 16px;
 }
 button {
   background-color: white;
   color: #ef5350;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 button:hover {
-  background-color: #ffcdd2;
+  background-color: #ffeaea;
 }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+main {
+  padding: 30px 20px;
+}
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
-  padding: 30px;
 }
 .card {
+  width: 280px;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 16px;
   text-align: center;
-  color: #fff;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-  transition: transform 0.3s;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-.card:hover {
-  transform: scale(1.03);
-}
-.card .sprite {
-  width: 100px;
-  height: 100px;
+.card .img-circle {
+  width: 120px;
+  height: 120px;
   background-color: rgba(255,255,255,0.2);
   border-radius: 50%;
+  margin: 0 auto 15px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin: 0 auto 10px;
+  justify-content: center;
+}
+.card img {
+  width: 80px;
+  height: 80px;
 }
 .card h2 {
   margin: 10px 0;
 }
 .types {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
-.type {
+.type-badge {
+  display: inline-block;
   background-color: rgba(255,255,255,0.2);
-  padding: 6px 12px;
-  border-radius: 20px;
+  color: white;
   font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin: 3px;
 }
-.stats {
+.stats p {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 15px;
   text-align: left;
-  margin-top: 10px;
+  margin: 6px 0;
 }
 .error {
   color: red;
   text-align: center;
   font-weight: bold;
+  margin-top: 20px;
 }
+
+/* Type Colors */
+.grass { background-color: #78C850; }
+.fire { background-color: #F08030; }
+.water { background-color: #6890F0; }
+.electric { background-color: #F8D030; }
+.bug { background-color: #A6B91A; }
+.normal { background-color: #A8A77A; }
+.poison { background-color: #A33EA1; }
+.ground { background-color: #E2BF65; }
+.fairy { background-color: #D685AD; }
+.fighting { background-color: #C22E28; }
+.psychic { background-color: #F95587; }
+.rock { background-color: #B6A136; }
+.ghost { background-color: #735797; }
+.ice { background-color: #96D9D6; }
+.dragon { background-color: #6F35FC; }
+.steel { background-color: #B7B7CE; }
+.flying { background-color: #A98FF3; }
+
